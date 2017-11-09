@@ -21,6 +21,12 @@ a:link,a:visited,a:hover,a:active {
     height: 100%;
     background-color: #222d32;
     float: left;
+    transition: all 1s;
+    position: absolute;
+    left: 0;
+}
+.aside.now {
+    left: -180px;
 }
 .aside .brand {
     height: 50px;
@@ -37,7 +43,9 @@ a:link,a:visited,a:hover,a:active {
 }
 .aside .userinfo {
     padding: 20px;
+    
 }
+
 .aside .userinfo img {
     width: 50px;
     float: left;
@@ -74,7 +82,12 @@ a:link,a:visited,a:hover,a:active {
 .main {
     height: 100%;
     overflow: hidden;
+    margin-left: 180px;
     /* background-color: green; */
+    transition: all 1s;
+}
+.main.now {
+    margin-left: 0;
 }
 .main .topbar {
     height: 50px;
@@ -86,4 +99,9 @@ a:link,a:visited,a:hover,a:active {
     color: #fff;
     line-height: 50px;
     font-size: 16px;
+}
+.main .content .pic_left,
+.main .content .pic_right {
+    width: 50%;
+    height: 400px;
 }

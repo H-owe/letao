@@ -11,3 +11,39 @@ $(document).ajaxStop(function(){
     })
     
 })
+if (location.href.indexOf('login.html') == -1) {
+    $.ajax({
+        url:'/employee/checkRootLogin',
+        type:'get',
+        success:function(data){
+            if (data.error===400) {
+                location.href="login.html";
+            }
+        }
+    
+    })
+}
+
+
+$('.nav2').prev().on('click',function(){
+    $(this).next().slideToggle();
+})
+$('.btn_menu').on('click',function(){
+    $('.main').toggleClass('now');
+    $('.aside').toggleClass('now');
+})
+$('.btn_loginout').on('click',function(){
+    console.log('1');
+    $('#out').modal('toggle');
+})
+$('.btn_comfirm').on('click',function(){
+    $.ajax({
+        url:'/employee/employeeLogout',
+        type:'get',
+        success:function(data){
+            if(data.success){
+                location.href="login.html";
+            }
+        }
+    })
+})
