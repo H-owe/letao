@@ -30,9 +30,12 @@ $(function(){
                         max : 16,
                         message : '密码长度必须是6-16位'
                     },
-                    regexp : {
-                        regexp : /^[a-zA-Z0-9_\.]+$/,
-                        message : '密码由数字字母下划线及.组成'
+                    // regexp : {
+                    //     regexp : /^[a-zA-Z0-9_\.]+$/,
+                    //     message : '密码由数字字母下划线及.组成'
+                    // }
+                    callback : {
+                        message : '密码错误'
                     }
                 }
             }
@@ -40,13 +43,14 @@ $(function(){
         }
     });
 
-    $('#form').on('success.form.bv',function(e){
+    $('#form').on("success.form.bv",function(e){
         e.preventDefault();
         $.ajax({
             type:'post',
             url:'/employee/employeeLogin',
             data:$('#form').serialize(),
             success: function(data){
+                console.log(data);
                 if(data.success){
                     location.href="index.html";
                 }
@@ -55,10 +59,13 @@ $(function(){
 
                 }
                 if (data.error===1001) {
-                    $('#form').data("bootstarpVa;idator").updateStatus("password","INVALID","callback");
+                    $('#form').data("bootstrapValidator").updateStatus("password","INVALID","callback");
                 }
             }
-        })
-    })
+        });
+    });
 
-})
+    $("[type='reset']").on('click',function(){
+        $('#form').data("bootstrapValidator").resetForm();
+    });
+});
