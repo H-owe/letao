@@ -8,6 +8,11 @@ a:link,a:visited,a:hover,a:active {
 .bg {
     background-color: #222d32;
 }
+.table.table-bordered td,
+.table.table-bordered th {
+    text-align: center;
+    vertical-align: middle;
+}
 * {
     margin: 0;
     padding: 0; 
