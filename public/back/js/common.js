@@ -31,6 +31,7 @@ $('.nav2').prev().on('click',function(){
 $('.btn_menu').on('click',function(){
     $('.main').toggleClass('now');
     $('.aside').toggleClass('now');
+    $('.topbar').toggleClass('now');
 })
 $('.btn_loginout').on('click',function(){
     console.log('1');

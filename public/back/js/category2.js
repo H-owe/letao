@@ -45,7 +45,73 @@ $(function(){
     var $form = $('form');
     $('.dropdown-menu').on('click','a',function(){
         $('.dropdown-text').text($(this).text());
-        $('#gategoryId').val($(this).data('id'));
-        // $form.data('bootstrapValidator').updateStatus('categoryId','VALID');
+        $('#categoryId').val($(this).data('id'));
+        $form.data("bootstrapValidator").updateStatus("categoryId", "VALID");
+    })
+
+    $('#fileupload').fileupload({
+        dataType:'json',
+        done : function(e,data){
+            // console.log(data);
+            $('.img_box img').attr('src',data.result.picAddr);
+            $('#brandLogo').val(data.result.picAddr);
+            $form.data('bootstrapValidator').updateStatus('brandLogo','VALID');
+
+        }
+    })
+
+    $form.bootstrapValidator({
+        excluded:[],
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+          },
+          fields: {
+              categoryId:{
+                  validators:{
+                      notEmpty:{
+                          message:'请输入一级分类名称'
+                      }
+                  }
+              },
+              brandName: {
+                validators:{
+                    notEmpty:{
+                        message:'请输入二级分类名称'
+                    }
+                }
+              },
+              brandLogo : {
+                  validators:{
+                    notEmpty:{
+                        message:'请上传图片'
+                    }
+                  }
+              }
+              
+          }
+    })
+
+    $form.on('success.form.bv',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'post',
+            url:'/category/addSecondCategory',
+            data:$form.serialize(),
+            success:function(data){
+                if(data.success){
+                    $('#addModal').modal('hide');
+                    currentPage =1;
+                    render();
+                    $form[0].reset();
+                    $form.data('bootstrapValidator').resetForm();
+                    $('.dropdown-text').text('请输入一级分类名称');
+                    $('.img_box img').attr('src','images/none.png');
+                    $('#categoryId').val('');
+                    $('#brandLogo').val('');
+                }
+            }
+        })
     })
 })

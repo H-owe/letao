@@ -30,8 +30,9 @@ a:link,a:visited,a:hover,a:active {
     background-color: #222d32;
     float: left;
     transition: all 1s;
-    position: absolute;
+    position: fixed;
     left: 0;
+    z-index: 5;
 }
 .aside.now {
     left: -180px;
@@ -88,11 +89,15 @@ a:link,a:visited,a:hover,a:active {
     padding-left: 50px;
 }
 .main {
+   
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin-left: 180px;
     /* background-color: green; */
     transition: all 1s;
+}
+.container-fluid {
+    padding-top: 70px;
 }
 .main.now {
     margin-left: 0;
@@ -100,8 +105,17 @@ a:link,a:visited,a:hover,a:active {
 .main .topbar {
     height: 50px;
     background-color: #3c8dbc;
-    padding: 0 20px;
+    padding: 0 20px 0 200px;
     margin-bottom: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    transition: all 1s;
+}
+.main .topbar.now {
+    padding-left: 20px;
 }
 .main .topbar a {
     color: #fff;
@@ -113,10 +127,15 @@ a:link,a:visited,a:hover,a:active {
     width: 50%;
     height: 400px;
 }
+
 .upload_box {
     width: 82px;
     height: 34px;
     position: relative;
+}
+.upload_box:hover button {
+    background-color: #e6e6e6;
+    border-color: #adadad;
 }
 .upload_box input {
     position: absolute;
