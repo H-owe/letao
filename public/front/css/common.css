@@ -106,3 +106,24 @@ img {
     color: #ccc;
     font-size: 14px;
 }
+
+.search {
+    padding: 10px 10px 0px;
+    position: relative;
+}
+
+.search input {
+    height: 34px;
+    border: 1px solid #069;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.search button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #069;
+    border-radius: 0 5px 5px 0;
+}

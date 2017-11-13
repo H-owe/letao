@@ -1,6 +1,6 @@
 $(function(){
     var currentPage = 1;
-    var pageSize = 10;
+    var pageSize = 5;
     function render(){
         $.ajax({
             url:'/user/queryUser',
